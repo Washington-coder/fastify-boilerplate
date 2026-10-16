@@ -1,0 +1,17 @@
+# Normalizacao de fim de linha: LF dentro do repositorio e no checkout,
+# em todos os sistemas operacionais (include Windows).
+* text=auto eol=lf
+
+# Arquivos binarios nunca devem ser normalizados
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
