@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Washington-coder/fastify-boilerplate#readme",
   "dependencies": {
+    "dotenv": "^18.0.8",
     "fastify": "^5.12.7"
   },
   "devDependencies": {
