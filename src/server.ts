@@ -1,4 +1,5 @@
 import fastify from 'fastify'
+import { env } from './config/env'
 
 const app = fastify({ logger: true })
 
@@ -10,7 +11,7 @@ app.get('/', async (_request, _reply) => {
 
 const start = async () => {
   try {
-    const address = await app.listen({ port: 3333, host: '0.0.0.0' })
+    const address = await app.listen({ port: env.PORT, host: '0.0.0.0' })
 
     app.log.info(`🚀 Servidor rodando em: ${address}`)
   } catch (err) {

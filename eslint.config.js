@@ -63,8 +63,8 @@ export default tseslint.config(
   },
 
   {
-    // Arquivos de configuração em JS puro não precisam de type-checking
-    files: ['*.config.js', '*.config.mjs'],
+    // Arquivos de configuração não precisam de type-checking
+    files: ['*.config.js', '*.config.mjs', '*.config.ts'],
     extends: [tseslint.configs.disableTypeChecked],
   },
 )

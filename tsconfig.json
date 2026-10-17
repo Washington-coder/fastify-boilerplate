@@ -2,8 +2,9 @@
   "compilerOptions": {
     // Ambiente Node.js
     "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    // Bundler resolve imports sem exigir a extensão do arquivo
+    "moduleResolution": "Bundler",
     "types": ["node"],
 
     // Estrutura do projeto

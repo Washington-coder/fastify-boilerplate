@@ -28,16 +28,16 @@
 
 Este projeto é um **ponto de partida moderno** para construir APIs em Node.js. Ele reúne as melhores práticas da comunidade com ferramentas de última geração, para que você **comece a escrever código de negócio imediatamente** — sem perder tempo montando a infraestrutura.
 
-| Camada                | Tecnologia                 |
-| --------------------- | -------------------------- |
-| 🔌 Framework HTTP     | [Fastify](https://fastify.dev) |
-| 🟦 Linguagem          | [TypeScript](https://www.typescriptlang.org) (strict mode) |
-| 🧹 Linting            | [ESLint](https://eslint.org) (flat config + type-checked) |
-| 🎨 Formatação         | [Prettier](https://prettier.io) |
-| ⚡ Hot-reload (dev)   | [tsx](https://tsx.is) watch |
-| 📦 Build              | [tsup](https://tsup.egoist.dev/) |
-| 🧾 Logging            | [pino-pretty](https://github.com/pinojs/pino-pretty) |
-| 🔐 Variáveis de ambiente | [dotenv](https://github.com/motdotla/dotenv) |
+| Camada                   | Tecnologia                                                 |
+| ------------------------ | ---------------------------------------------------------- |
+| 🔌 Framework HTTP        | [Fastify](https://fastify.dev)                             |
+| 🟦 Linguagem             | [TypeScript](https://www.typescriptlang.org) (strict mode) |
+| 🧹 Linting               | [ESLint](https://eslint.org) (flat config + type-checked)  |
+| 🎨 Formatação            | [Prettier](https://prettier.io)                            |
+| ⚡ Hot-reload (dev)      | [tsx](https://tsx.is) watch                                |
+| 📦 Build                 | [tsup](https://tsup.egoist.dev/)                           |
+| 🧾 Logging               | [pino-pretty](https://github.com/pinojs/pino-pretty)       |
+| 🔐 Variáveis de ambiente | [dotenv](https://github.com/motdotla/dotenv)               |
 
 ---
 
@@ -72,15 +72,15 @@ cp .env.example .env
 
 ## 🎬 Como executar
 
-| Comando             | Descrição                                        |
-| ------------------- | ------------------------------------------------ |
-| `npm run dev`       | Roda o servidor com **hot-reload** e logs em JSON amigáveis |
-| `npm run build`     | Compila o TypeScript para a pasta `build/`       |
-| `npm start`         | Executa a versão de **produção** a partir de `build/server.js` |
-| `npm run lint`      | Verifica erros de lint no código                 |
-| `npm run lint:fix`  | Verifica **e corrige** automaticamente erros de lint |
-| `npm run format`    | Formata todo o código com Prettier               |
-| `npm run format:check` | Verifica se o código está formatado segundo o Prettier |
+| Comando                | Descrição                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------- |
+| `npm run dev`          | Roda o servidor com **hot-reload** e logs em JSON amigáveis                  |
+| `npm run build`        | Compila o TypeScript em um bundle único (`dist/server.cjs`)                  |
+| `npm start`            | Executa a versão de **produção** a partir do bundle (`node dist/server.cjs`) |
+| `npm run lint`         | Verifica erros de lint no código                                             |
+| `npm run lint:fix`     | Verifica **e corrige** automaticamente erros de lint                         |
+| `npm run format`       | Formata todo o código com Prettier                                           |
+| `npm run format:check` | Verifica se o código está formatado segundo o Prettier                       |
 
 Após rodar `npm run dev`, a API estará disponível em:
 
@@ -129,7 +129,7 @@ Para utilizá-lo, instale a extensão **REST Client** (veja [extensões do VS Co
 
 Ao trabalhar com o Pino logger (padrão do Fastify), os logs saem em **JSON** — ótimo para produção, mas pouco legível no terminal. Por isso, o script `dev` já usa o `pino-pretty`, que formata os logs de forma amigável.
 
-> ℹ️ O script `start` (produção) mantém o JSON puro, como é o esperado em ambientes de produção.
+> ℹ️ O script `start` (produção) roda o bundle `dist/server.cjs` e mantém o JSON puro, como é o esperado em ambientes de produção.
 
 ---
 
@@ -141,19 +141,19 @@ Para que **todo o fluxo de desenvolvimento funcione perfeitamente** dentro do VS
 
 As configurações do projeto (.vscode/settings.json, ESLint flat config e arquivos `.http`) **dependem diretamente** destas extensões:
 
-| Extensão                        | ID                                | Por que é necessária |
-| ------------------------------- | --------------------------------- | -------------------- |
-| **Prettier — Code formatter**   | `esbenp.prettier-vscode`          | É o formatador padrão do projeto. Sem ela, a *formatação automática ao salvar* (definida em `settings.json`) não funciona. |
-| **ESLint**                      | `dbaeumer.vscode-eslint`          | Executa as regras de lint e a **correção automática ao salvar** (`source.fixAll.eslint`). O código usa regras type-checked que dependem dela. |
-| **REST Client**                 | `humao.rest-client`               | Permite executar as requisições do arquivo [`endpoints.http`](./endpoints.http) direto do editor. |
+| Extensão                      | ID                       | Por que é necessária                                                                                                                          |
+| ----------------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Prettier — Code formatter** | `esbenp.prettier-vscode` | É o formatador padrão do projeto. Sem ela, a _formatação automática ao salvar_ (definida em `settings.json`) não funciona.                    |
+| **ESLint**                    | `dbaeumer.vscode-eslint` | Executa as regras de lint e a **correção automática ao salvar** (`source.fixAll.eslint`). O código usa regras type-checked que dependem dela. |
+| **REST Client**               | `humao.rest-client`      | Permite executar as requisições do arquivo [`endpoints.http`](./endpoints.http) direto do editor.                                             |
 
 ### ⭐ Recomendadas
 
-| Extensão                              | ID                        | Benefício |
-| ------------------------------------- | ------------------------- | --------- |
-| **EditorConfig for VS Code**          | `editorconfig.editorconfig` | Ajuda a manter consistência de estilos (indentação, fim de linha) entre todos os colaboradores. |
-| **Error Lens**                        | `usernamehw.errorlens`    | Exibe os erros de lint e TypeScript **inline**, na linha do código, facilitando a correção. |
-| **npm**                               | `eg2.vscode-npm-scripts`  | Rodar os scripts do `package.json` com um clique. |
+| Extensão                     | ID                          | Benefício                                                                                       |
+| ---------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------- |
+| **EditorConfig for VS Code** | `editorconfig.editorconfig` | Ajuda a manter consistência de estilos (indentação, fim de linha) entre todos os colaboradores. |
+| **Error Lens**               | `usernamehw.errorlens`      | Exibe os erros de lint e TypeScript **inline**, na linha do código, facilitando a correção.     |
+| **npm**                      | `eg2.vscode-npm-scripts`    | Rodar os scripts do `package.json` com um clique.                                               |
 
 ### 🤖 Instalação automática (recomendada)
 
@@ -173,9 +173,9 @@ cp .env.example .env
 
 As variáveis disponíveis atualmente:
 
-| Variável | Descrição          | Default    |
-| -------- | ------------------ | ---------- |
-| `PORT`   | Porta do servidor  | `3333`     |
+| Variável | Descrição         | Default |
+| -------- | ----------------- | ------- |
+| `PORT`   | Porta do servidor | `3333`  |
 
 ---
 
