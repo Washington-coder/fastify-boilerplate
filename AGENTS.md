@@ -19,6 +19,10 @@ npm run format:check # verifica formatação (Prettier)
 npm test             # roda a suíte de testes (vitest) uma única vez
 npm run test:watch   # roda os testes em modo watch
 npx vitest run src/config/env.test.ts  # roda apenas um arquivo de teste
+docker compose up -d            # sobe o banco PostgreSQL em segundo plano
+docker compose down             # para o container (preserva os dados do volume)
+docker compose down -v          # para o container e apaga os dados do volume
+docker compose logs -f postgres # acompanha os logs do banco
 ```
 
 > ⚠️ **Regra obrigatória**: sempre que um comando for **inserido, alterado ou removido** — seja no `package.json` ou em qualquer outra ferramenta/atalho do projeto — atualize **o** `README.md` e esta seção de comandos do `AGENTS.md` no mesmo commit/PR. O README deve refletir com precisão o que cada comando faz e o artefato que produz (ex.: `npm start` roda `node dist/server.cjs`). O inverso também vale: nunca remover um script do `package.json` sem removê-lo de ambos.

@@ -47,6 +47,7 @@ Antes de começar, certifique-se de ter instalado em sua máquina:
 
 - **Node.js** versão **20 ou superior** → [nodejs.org](https://nodejs.org)
 - NPM (já vem junto com o Node.js)
+- **Docker** com Docker Compose (recomendado) → [docker.com](https://www.docker.com/products/docker-desktop/) — necessário para subir o banco PostgreSQL local
 
 > 💡 Para verificar sua versão, execute: `node -v`
 
@@ -95,6 +96,21 @@ curl http://localhost:3333/
 
 ---
 
+## 🗄️ Banco de dados (PostgreSQL)
+
+O repositório inclui um [`docker-compose.yml`](./docker-compose.yml) que sobe um PostgreSQL local. O container usa `POSTGRES_USER` e `POSTGRES_PASSWORD` do seu `.env` (a conexão da aplicação usa `DATABASE_URL`, que aponta para `localhost:5432`).
+
+| Comando                           | Descrição                                                           |
+| --------------------------------- | ------------------------------------------------------------------- |
+| `docker compose up -d`            | Sobe o container do PostgreSQL em segundo plano                     |
+| `docker compose down`             | Para o container, **preservando** os dados (volume `postgres_data`) |
+| `docker compose down -v`          | Para o container e **apaga** os dados do volume                     |
+| `docker compose logs -f postgres` | Acompanha os logs do banco                                          |
+
+> 💡 A primeira execução baixa a imagem `postgres:17-alpine` e pode demorar alguns minutos.
+
+---
+
 ## 📁 Estrutura do projeto
 
 ```
@@ -105,6 +121,7 @@ fastify-boilerplate/
 ├── 📂 .vscode/              # Configurações recomendadas do VS Code
 │   └── settings.json        # Formatação automática, EOL LF, ESLint no save
 ├── .env.example             # Modelo das variáveis de ambiente
+├── docker-compose.yml       # Banco PostgreSQL via Docker Compose
 ├── .gitattributes           # Normalização de fim de linha (LF)
 ├── .gitignore               # Arquivos ignorados pelo Git
 ├── .prettierrc              # Configuração do Prettier
@@ -173,9 +190,13 @@ cp .env.example .env
 
 As variáveis disponíveis atualmente:
 
-| Variável | Descrição         | Default |
-| -------- | ----------------- | ------- |
-| `PORT`   | Porta do servidor | `3333`  |
+| Variável            | Descrição                                                  | Default                                                           |
+| ------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
+| `NODE_ENV`          | Ambiente de execução (`development`, `test`, `production`) | `development`                                                     |
+| `PORT`              | Porta do servidor                                          | `3333`                                                            |
+| `DATABASE_URL`      | String de conexão com o PostgreSQL                         | `postgres://postgres:postgres@localhost:5432/fastify_boilerplate` |
+| `POSTGRES_USER`     | Usuário do banco (usado pelo docker compose)               | `postgres`                                                        |
+| `POSTGRES_PASSWORD` | Senha do banco (usada pelo docker compose)                 | `postgres`                                                        |
 
 ---
 
